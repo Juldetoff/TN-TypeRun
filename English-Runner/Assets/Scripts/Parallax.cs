@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
     // Start is called before the first frame update
     public float depth = 1;
+    public float Ydespawn = -7f;
+    public float Yspawn = 7f;
 
     Player player;
 
@@ -26,9 +29,9 @@ public class Parallax : MonoBehaviour
 
         pos.x -= realVelocity * Time.fixedDeltaTime;
 
-        if(pos.x <= -3)
+        if(pos.x <= Ydespawn)
         {
-            pos.x = 2.5f;
+            pos.x = Yspawn-Mathf.Abs(Ydespawn-pos.x);
         }
 
 
