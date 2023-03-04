@@ -139,6 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4188388939165540171}
+  - component: {fileID: 6261090397305045150}
   m_Layer: 0
   m_Name: PlateformChunk
   m_TagString: Untagged
@@ -163,8 +164,23 @@ Transform:
   - {fileID: 4188388939670410291}
   - {fileID: 4188388940067430953}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6261090397305045150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188388939165540170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f95f5ac5b143049a738fec739d00f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depth: 1
+  Ydespawn: -11.82106
+  Yspawn: 14.17894
 --- !u!1 &4188388939670410290
 GameObject:
   m_ObjectHideFlags: 0
