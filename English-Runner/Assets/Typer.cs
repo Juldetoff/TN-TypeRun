@@ -12,6 +12,10 @@ public class Typer : MonoBehaviour
     private string remainingWord = string.Empty;
     private string typedWord = string.Empty;
     private string currentWord = string.Empty;
+    
+    public Obstacle obstacle = null; //check si parent ça marche
+
+    public bool isActive = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -19,7 +23,7 @@ public class Typer : MonoBehaviour
         SetCurrentWord();
     }
 
-    private void SetCurrentWord()
+    public void SetCurrentWord()
     {
         currentWord = wordbank.GetWord();
         typedWord = string.Empty;
@@ -36,12 +40,19 @@ public class Typer : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        CheckInput();
+        isActive = obstacle.isActive;
+        if(isActive){
+            CheckInput();
+        }
+        else{
+            typedWord = string.Empty;
+            remainingWord = currentWord;
+        }
     }
 
-    private void CheckInput()
+    private void CheckInput() //TODO : corriger lorsque 2 objets sont à l'écran, lorsque le 2nd s'active il trigger un CheckInput sur la last lettre du 1er
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown) 
         {
             string keysPressed = Input.inputString;
             Debug.Log(keysPressed);
@@ -60,7 +71,7 @@ public class Typer : MonoBehaviour
 
             if (IsWordComplete())
             {
-                //BOOM LE CAILLOUX
+                obstacle.TakeDamage(1);
                 SetCurrentWord(); 
             }
         }
@@ -95,4 +106,16 @@ public class Typer : MonoBehaviour
         return remainingWord.Length == 0;
     }
 
+    public void SetActive(){
+        isActive = true;
+        SetRemainingWord(currentWord);
+    }
+
+    public void SetInactive(){
+        isActive = false;
+    }
+
+    public void GetDestroyed(){
+        Destroy(gameObject);
+    }
 }

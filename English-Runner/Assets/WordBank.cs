@@ -9,13 +9,26 @@ public class WordBank : MonoBehaviour
     {
         "Rock", "Obstacle", "Danger","Squid"
     };
+    private List<string> difficulWords = new List<string>()
+    {
+        "Anticonstitutionnellement"
+    };
 
     private List<string> workingWords = new List<string>();
+    private List<string> hardwords = new List<string>();
 
     private void Awake()
     {
+        ResetBank();
+    }
+
+    private void ResetBank(){
+        workingWords.Clear();
         workingWords.AddRange(originalWords); //addrange copie 
+        hardwords.AddRange(difficulWords);
+        ConvertToLower(hardwords);
         ConvertToLower(workingWords);
+        Shuffle(hardwords);
         Shuffle(workingWords);
     }
 
@@ -47,6 +60,23 @@ public class WordBank : MonoBehaviour
         {
             newWord = workingWords.Last();
             workingWords.Remove(newWord);
+        }
+        else{
+            ResetBank();
+            newWord = workingWords.Last();
+            workingWords.Remove(newWord);
+        }
+        return newWord;
+    }
+
+    public string GetHardWord()
+    {
+        string newWord = string.Empty;
+
+        if(hardwords.Count > 0)
+        {
+            newWord = hardwords.Last();
+            hardwords.Remove(newWord);
         }
         return newWord;
     }

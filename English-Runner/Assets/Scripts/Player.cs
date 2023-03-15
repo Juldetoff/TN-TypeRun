@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     public float maxHoldJumpTime = 0.4f;
     public float holdJumpTimer = 0.0f; //remplacable par coroutine
     public float jumpGroundThreshold = 0.1f;
+
+    public int lives = 3; //augmentable via skin ou bonus
+    private float accRatio = 1.25f;
     void Start()
     {
         
@@ -71,6 +74,10 @@ public class Player : MonoBehaviour
         }
 
         distance += velocity.x * Time.fixedDeltaTime;
+        if (velocity.x > maxXVelocity*0.99f){ 
+            maxXVelocity = maxXVelocity * accRatio;
+            accRatio = (accRatio-1)/1.3f + 1;
+        }
 
         if (true)
         {
@@ -84,5 +91,27 @@ public class Player : MonoBehaviour
         }
 
         transform.position = pos;
+    }
+
+    public void GettingHit()
+    {
+        lives--;
+        if(lives<=0)
+        {
+            //game over
+        }
+        else
+        {
+            //respawn
+        }
+    }
+
+    public void GettingHealth()
+    {
+        lives++;
+    }
+
+    public float GetRatio(){
+        return accRatio;
     }
 }
