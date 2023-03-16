@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7925619496527722213}
   - component: {fileID: 7925619496527722211}
   - component: {fileID: 7925619496527722210}
-  - component: {fileID: 7925619496527722208}
+  - component: {fileID: 1994086782}
   m_Layer: 0
   m_Name: dactyText
   m_TagString: Untagged
@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.35}
-  m_SizeDelta: {x: 0.8486, y: 0.1674}
+  m_AnchoredPosition: {x: 0, y: 0.349}
+  m_SizeDelta: {x: 0.9542, y: 0.1755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7925619496527722211
 MeshRenderer:
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.07493898, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.0008754432, w: -0.000000026077032}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7925619496527722211}
   m_maskType: 0
---- !u!114 &7925619496527722208
+--- !u!114 &1994086782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,13 +182,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7925619496527722212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9169a89b66385546be32183c2352546, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d2831d4d56bb754fad3c5e924edc307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wordbank: {fileID: 0}
   wordOutput: {fileID: 7925619496527722210}
-  obstacle: {fileID: 1403340690}
-  isActive: 0
+  obstacle: {fileID: 1994086781}
+  isActive: 1
 --- !u!1 &7925619496854620712
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 7925619496854620726}
   - component: {fileID: 7925619496854620713}
   - component: {fileID: 1403340689}
-  - component: {fileID: 1403340690}
+  - component: {fileID: 1994086781}
   m_Layer: 0
   m_Name: Obstacle(rock)
   m_TagString: Untagged
@@ -222,7 +222,7 @@ Transform:
   m_Children:
   - {fileID: 7925619496527722213}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7925619496854620713
 SpriteRenderer:
@@ -291,7 +291,7 @@ MonoBehaviour:
   depth: 1
   Ydespawn: -13.5
   Yspawn: 17
---- !u!114 &1403340690
+--- !u!114 &1994086781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,12 +300,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7925619496854620712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f425fb090b67e418cef9cfff9d7884, type: 3}
+  m_Script: {fileID: 11500000, guid: d547e71f0f454bb46bdabefe53913d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typer: {fileID: 7925619496527722208}
-  destroyedSprite: {fileID: 21300000, guid: 09fda3d0f2c89e7429e5693a76966394, type: 3}
-  sprite: {fileID: 21300000, guid: 4b8df3e837c15134e966ef69ce5e536d, type: 3}
+  typer: {fileID: 1994086782}
+  destroyedSprite: {fileID: 0}
+  sprite: {fileID: 0}
   health: 1
-  isActive: 1
-  words: []
+  isActive: 0

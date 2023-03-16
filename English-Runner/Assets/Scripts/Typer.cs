@@ -16,6 +16,7 @@ public class Typer : MonoBehaviour
     public Obstacle obstacle = null; //check si parent ça marche
 
     public bool isActive = true;
+    public int skipNumber = 0;
 
     // Start is called before the first frame update
     private void Start()
@@ -42,7 +43,12 @@ public class Typer : MonoBehaviour
     {
         isActive = obstacle.isActive;
         if(isActive){
-            CheckInput();
+            if(skipNumber==0){
+                CheckInput();
+            }
+            else{
+                skipNumber = 0;
+            }
         }
         else{
             typedWord = string.Empty;
@@ -50,9 +56,9 @@ public class Typer : MonoBehaviour
         }
     }
 
-    private void CheckInput() //TODO : corriger lorsque 2 objets sont à l'écran, lorsque le 2nd s'active il trigger un CheckInput sur la last lettre du 1er
+    private void CheckInput() 
     {
-        if (Input.anyKeyDown) 
+        if (Input.anyKeyDown) //essaye avec anyKeyUp au lieu de Down pour corriger problème de fin de mot 
         {
             string keysPressed = Input.inputString;
             Debug.Log(keysPressed);
@@ -72,7 +78,9 @@ public class Typer : MonoBehaviour
             if (IsWordComplete())
             {
                 obstacle.TakeDamage(1);
-                SetCurrentWord(); 
+                if(obstacle.health > 0){
+                    SetCurrentWord();
+                }
             }
         }
         else

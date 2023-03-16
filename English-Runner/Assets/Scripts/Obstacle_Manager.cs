@@ -33,7 +33,7 @@ public class Obstacle_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //on lance la coroutine gérant le spawn d'obstacles
+        //on lance la coroutine gérant le spawn d'obstacles (parce qu'elle s'autorappelle après le cooldown)
         StartCoroutine(SpawnObs());
     }
 
@@ -61,7 +61,7 @@ public class Obstacle_Manager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnObs(){ //check pourquoi ça instancie pas plus d'un obstacle
+    IEnumerator SpawnObs(){ 
         Obstacle obs = Instantiate(PrefabObs, new Vector2(Xspawn, -2.4f), Quaternion.identity);
         if(obstacles.Count > 0){
             obs.SetInactive();
@@ -69,8 +69,8 @@ public class Obstacle_Manager : MonoBehaviour
         obstacles.Add(obs);
         int i = Random.Range(0, spriteList.Count);
         int vies = 1;
-        List<string> words = new List<string>(){"Rock", "Obstacle", "Danger", "Squid"};
-        obs.SetObstacle(destroyedSpriteList[i], spriteList[i], vies, words, player, this);
+        //List<string> words = new List<string>(){"Rock", "Obstacle", "Danger", "Squid"};
+        obs.SetObstacle(destroyedSpriteList[i], spriteList[i], vies, player, this, 1);
         //yield return null;
         yield return new WaitForSeconds(obsCooldown);
         StartCoroutine(SpawnObs());

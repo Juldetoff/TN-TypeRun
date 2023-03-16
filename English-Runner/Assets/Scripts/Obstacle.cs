@@ -11,10 +11,6 @@ public class Obstacle : MonoBehaviour
     public Sprite sprite = null;
     public int health = 1;
     public bool isActive = false;
-    public List<string> words = new List<string>()
-    {
-        "Rock", "Obstacle", "Danger","Squid"
-    };
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +23,20 @@ public class Obstacle : MonoBehaviour
     {
         //check si une hitbox constante marche, ou si y<yplayer
         //check déplacement aussi à la place de parallax
-        //check si non active, reset mot
+        //check si non active, reset mot (ou pas, bcz déjà géré par manager)
     }
 
-    public void SetObstacle(Sprite destroyed, Sprite image, int health, List<string> words, Player player, Obstacle_Manager manager)
+    public void SetObstacle(Sprite destroyed, Sprite image, int health, Player player, Obstacle_Manager manager, int skip)
     {
         this.destroyedSprite = destroyed;
         this.sprite = image;
+        GetComponent<SpriteRenderer>().sprite = sprite;
         this.health = health;
-        this.words = words;
         this.player = player;
         this.typer.wordbank = manager.wordbank;
         this.typer.SetCurrentWord();
         this.manager = manager;
+        this.typer.skipNumber = skip;
     }
 
     public void TakeDamage(int damage)
@@ -48,6 +45,7 @@ public class Obstacle : MonoBehaviour
         if(health <= 0)
         {
             DestroyObstacle();
+            //player.AddScore(1);
         }
     }
 
@@ -58,7 +56,6 @@ public class Obstacle : MonoBehaviour
         typer.SetInactive();
         typer.GetDestroyed();
         manager.update_obstacles();
-        //player.AddScore(1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //essayons ça pour la collision
@@ -67,6 +64,7 @@ public class Obstacle : MonoBehaviour
         {
             isActive = false;
             player.GettingHit();
+            DestroyObstacle();
         }
     }
 
@@ -82,7 +80,6 @@ public class Obstacle : MonoBehaviour
     {
         isActive = false;
         typer.SetInactive();
-        GetComponent<SpriteRenderer>().sprite = destroyedSprite;
     }
 
 }

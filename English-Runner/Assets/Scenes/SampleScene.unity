@@ -2633,9 +2633,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622937573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f6baace2f57f4d4dad1c34561953580, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ca5f009a7f1143439616f834bdafbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wordbank: {fileID: 1622937576}
+  obstacles: []
+  PrefabObs: {fileID: 1994086781, guid: d4e5204a3c382c14686a89c81ac94b37, type: 3}
+  spriteList:
+  - {fileID: 21300000, guid: 4b8df3e837c15134e966ef69ce5e536d, type: 3}
+  destroyedSpriteList:
+  - {fileID: 21300000, guid: 09fda3d0f2c89e7429e5693a76966394, type: 3}
 --- !u!4 &1622937575
 Transform:
   m_ObjectHideFlags: 0
@@ -2660,16 +2667,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622937573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a7a3cca75884364989d0165d6b203b0, type: 3}
+  m_Script: {fileID: 11500000, guid: a6da05ac3ec384b44880378c9a80e7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordbank: {fileID: 1622937574}
-  obstacles: []
-  PrefabObs: {fileID: 1403340690, guid: d4e5204a3c382c14686a89c81ac94b37, type: 3}
-  spriteList:
-  - {fileID: 21300000, guid: 4b8df3e837c15134e966ef69ce5e536d, type: 3}
-  destroyedSpriteList:
-  - {fileID: 21300000, guid: 09fda3d0f2c89e7429e5693a76966394, type: 3}
 --- !u!1001 &1632865633
 PrefabInstance:
   m_ObjectHideFlags: 0
