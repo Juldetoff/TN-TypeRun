@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Obstacle_Manager : MonoBehaviour
@@ -110,11 +111,17 @@ public class Obstacle_Manager : MonoBehaviour
         gameOver = true;
         text.GetComponent<Animator>().SetBool("gameOver", true);
         //retour à la scène de menu
+        StartCoroutine(ReturnToMenu());
+    }
+
+    public IEnumerator ReturnToMenu(){
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene(0);
     }
 
     public void AddScore(){
         score += 1;
-        scoreText.text = "Mots trouvés: " + score;
+        scoreText.text = "Words found: " + score;
     }
 
     public void UpdateLife(){

@@ -70,6 +70,35 @@ public class WordBank : MonoBehaviour
         , "freshwater", "aquarium", "tank", "underwater", "dive", "snorkel", "scuba", "fishing", "angling", "spearfishing"
         , "conservation", "marine biology", "oceanography", "seafloor", "sonar"
     };
+    private List<string> foodWords = new List<string>(){
+        "fish and chips", "shepherd's pie", "bangers and mash", "roast beef", "Yorkshire pudding", "steak and kidney pie"
+        ,"ploughman's lunch", "Cornish pasty", "toad in the hole", "bubble and squeak", "black pudding", "white pudding"
+        , "haggis", "neeps and tatties", "Scotch egg", "stargazy pie", "jellied eels", "steak and ale pie", "beef Wellington"
+        , "roast lamb", "roast pork", "roast chicken", "beef stew", "corned beef hash", "cottage pie", "lancashire hotpot"
+        , "scones", "clotted cream", "jam", "bread and butter pudding", "custard", "trifle", "spotted dick", "Eton mess"
+        , "Victoria sponge", "Battenberg cake", "fruitcake", "Christmas pudding", "mince pies", "hot cross buns"
+        , "crumpets", "English muffins", "toast", "tea", "coffee", "cider", "ale", "beer", "Gin and Tonic", "Pimms"
+        , "whisky", "scotch", "brandy", "port", "sherry", "marmite", "Branston pickle", "piccalilli"
+        , "brown sauce", "ketchup", "mayonnaise", "salad cream", "horseradish sauce", "English mustard"
+        , "Colman's mustard", "mint sauce", "bread sauce", "apple sauce", "cranberry sauce", "custard sauce"
+        , "béchamel sauce", "gravy", "Yorkshire tea", "Twinings tea", "PG Tips tea", "Typhoo tea", "Fortnum and Mason tea"
+        , "Hobnobs", "Digestives", "Rich Tea biscuits", "Jammie Dodgers", "Shortbread", "Treacle tart", "Lemon tart"
+        , "Banoffee pie", "Apple crumble", "Sticky toffee pudding", "Spotted Dog", "Welsh Rarebit", "cheddar cheese"
+        , "Stilton cheese", "red Leicester cheese", "Wensleydale cheese", "cream cheese", "clotted cream ice cream"
+    };
+
+    private List<string> animalWords = new List<string>(){
+        "dog", "cat", "horse", "cow", "sheep", "goat", "pig", "chicken", "duck", "goose", "turkey", "pigeon"
+        , "swan", "parrot", "canary", "hamster", "guinea pig", "rabbit", "ferret", "hedgehog", "rat", "mouse"
+        , "squirrel", "fox", "wolf", "coyote", "bear", "lion", "tiger", "leopard", "cheetah", "jaguar", "panther"
+        , "elephant", "rhinoceros", "hippopotamus", "giraffe", "zebra", "buffalo", "deer", "moose", "elk", "antelope"
+        , "impala", "gazelle", "kangaroo", "koala", "panda", "monkey", "ape", "gorilla", "orangutan", "lemur"
+        , "sloth", "armadillo", "porcupine", "skunk", "badger", "weasel", "otter", "seal", "walrus", "whale", "dolphin"
+        , "shark", "octopus", "squid", "jellyfish", "crab", "lobster", "shrimp", "clam", "oyster", "snail", "slug"
+        , "butterfly", "bee", "wasp", "ant", "spider", "scorpion", "centipede", "millipede", "lizard", "snake", "turtle"
+        , "crocodile", "alligator", "frog", "toad", "newt", "salamander", "fish", "salmon", "trout", "tuna", "shark"
+        , "eel", "ray", "starfish", "coral", "jellyfish"
+    };
 
     private List<string> workingWords = new List<string>();
     private List<string> hardwords = new List<string>();
@@ -93,6 +122,15 @@ public class WordBank : MonoBehaviour
         }
         else if(choice == "sport"){
             return sportWords;
+        }
+        else if(choice == "fish"){
+            return fishWords;
+        }
+        else if(choice == "animal"){
+            return animalWords;
+        }
+        else if(choice == "food"){
+            return foodWords;
         }
         else{
             return tempList;
