@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     public int lives = 3; //augmentable via skin ou bonus
     private float accRatio = 1.25f;
+    
     void Start()
     {
         
@@ -30,11 +31,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 pos = transform.position;
+        if(lives>0){Vector2 pos = transform.position;
         float groundDist = Mathf.Abs(pos.y - groundHeight);
         if (isOnGround || groundDist<=jumpGroundThreshold)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) & false)
             {
                 isOnGround = false;
                 velocity.y = jumpVelocity;
@@ -44,11 +45,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             isHoldingJump = false;
-        }
+        }}
     }
 
     private void FixedUpdate()
     {
+        if(lives>0)
+        {
         Vector2 pos = transform.position;
         if (!isOnGround)
         {
@@ -89,8 +92,14 @@ public class Player : MonoBehaviour
                 velocity.x = maxXVelocity;
             }
         }
-
         transform.position = pos;
+        }
+        else{
+            Vector2 pos = transform.position;
+            velocity.y += gravity * Time.fixedDeltaTime;
+            pos.y += velocity.y * Time.fixedDeltaTime;
+            transform.position = pos;
+        }
     }
 
     public void GettingHit()
@@ -98,7 +107,8 @@ public class Player : MonoBehaviour
         lives--;
         if(lives<=0)
         {
-            //game over
+            //TODO, animation de mort avec écrit game over et retour menu
+            gameOver();
         }
         else
         {
@@ -113,5 +123,14 @@ public class Player : MonoBehaviour
 
     public float GetRatio(){
         return accRatio;
+    }
+
+    public void gameOver(){
+        Vector2 posi = transform.position;
+        velocity.y = jumpVelocity;
+        posi.y += velocity.y * Time.fixedDeltaTime;
+        transform.position = posi; 
+        Animator playerAnimator = GetComponent<Animator>();
+        playerAnimator.SetBool("gameOver", true);
     }
 }

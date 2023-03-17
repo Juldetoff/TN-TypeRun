@@ -24,7 +24,7 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float realVelocity = player.velocity.x / depth;
+        if(player.lives>0){float realVelocity = player.velocity.x / depth;
         Vector2 pos = transform.position;
 
         pos.x -= realVelocity * Time.fixedDeltaTime;
@@ -35,6 +35,6 @@ public class Parallax : MonoBehaviour
         }
 
 
-        transform.position = pos;
+        transform.position = pos;}
     }
 }

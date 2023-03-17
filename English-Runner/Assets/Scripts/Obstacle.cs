@@ -12,6 +12,8 @@ public class Obstacle : MonoBehaviour
     public int health = 1;
     public bool isActive = false;
 
+    public float Ydespawn = -13.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +21,19 @@ public class Obstacle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //check si une hitbox constante marche, ou si y<yplayer
-        //check déplacement aussi à la place de parallax
-        //check si non active, reset mot (ou pas, bcz déjà géré par manager)
+        float realVelocity = player.velocity.x;
+        Vector2 pos = transform.position;
+
+        if(player.lives>0){pos.x -= realVelocity * Time.fixedDeltaTime;}
+
+        if(pos.x <= Ydespawn)
+        {
+            if(isActive){this.DestroyObstacle();}
+            Destroy(gameObject);
+        }
+        transform.position = pos;
     }
 
     public void SetObstacle(Sprite destroyed, Sprite image, int health, Player player, Obstacle_Manager manager, int skip)
@@ -45,16 +55,17 @@ public class Obstacle : MonoBehaviour
         if(health <= 0)
         {
             DestroyObstacle();
-            //player.AddScore(1);
+            manager.AddScore();
         }
     }
 
     private void DestroyObstacle()
     {
+        StartCoroutine(manager.SpawnParticles(transform.position.x, transform.position.y));
         isActive = false;
         GetComponent<SpriteRenderer>().sprite = destroyedSprite;
-        typer.SetInactive();
-        typer.GetDestroyed();
+        if(typer){typer.SetInactive();
+        typer.GetDestroyed();}
         manager.update_obstacles();
     }
 
@@ -64,6 +75,9 @@ public class Obstacle : MonoBehaviour
         {
             isActive = false;
             player.GettingHit();
+            if(player.lives<=0){
+                manager.GameOver();
+            }
             DestroyObstacle();
         }
     }
@@ -79,7 +93,8 @@ public class Obstacle : MonoBehaviour
     public void SetInactive()
     {
         isActive = false;
-        typer.SetInactive();
+        if(typer){
+            typer.SetInactive();}
     }
 
 }

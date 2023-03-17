@@ -62,7 +62,7 @@ public class Typer : MonoBehaviour
         {
             string keysPressed = Input.inputString;
             Debug.Log(keysPressed);
-            if(keysPressed.Length ==1 && keysPressed!=" ")
+            if(keysPressed.Length ==1)
             {
                 EnterLetter(keysPressed);
             }

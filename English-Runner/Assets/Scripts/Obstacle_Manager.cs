@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Obstacle_Manager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Obstacle_Manager : MonoBehaviour
     public List<Sprite> spriteList = new List<Sprite>();
     public List<Sprite> destroyedSpriteList = new List<Sprite>();
 
+    public List<ParticleSystem> particleList = new List<ParticleSystem>();
+
 
 
 
@@ -29,6 +32,11 @@ public class Obstacle_Manager : MonoBehaviour
     float bonusCooldown = 17; //temps min avant prochain spawn possible de bonus (en secondes)
     float decoCooldown = 5; //temps avant prochain spawn de déco (en secondes)
     float decoChance = 0.5f; //chance d'avoir une déco qui apparaît
+
+    bool gameOver = false;
+
+    public TMP_Text text = null;
+    public TMP_Text scoreText = null;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +70,10 @@ public class Obstacle_Manager : MonoBehaviour
     }
 
     IEnumerator SpawnObs(){ 
+        if(gameOver){yield break;}
         Obstacle obs = Instantiate(PrefabObs, new Vector2(Xspawn, -2.4f), Quaternion.identity);
+        if (obsCooldown>1){obsCooldown *= 0.92f;}
+        else obsCooldown = 1;
         if(obstacles.Count > 0){
             obs.SetInactive();
         }
@@ -72,7 +83,8 @@ public class Obstacle_Manager : MonoBehaviour
         //List<string> words = new List<string>(){"Rock", "Obstacle", "Danger", "Squid"};
         obs.SetObstacle(destroyedSpriteList[i], spriteList[i], vies, player, this, 1);
         //yield return null;
-        yield return new WaitForSeconds(obsCooldown);
+        float bonus = Random.Range(0f, 2f);
+        yield return new WaitForSeconds(obsCooldown+bonus);
         StartCoroutine(SpawnObs());
     }
 
@@ -81,5 +93,24 @@ public class Obstacle_Manager : MonoBehaviour
         if(obstacles.Count > 0){
             obstacles[0].SetActive();
         }
+    }
+
+    public IEnumerator SpawnParticles(float x, float y){
+        int i = Random.Range(0, particleList.Count);
+        ParticleSystem particle = Instantiate(particleList[i], new Vector3(x, y,-1), Quaternion.identity);
+        particle.Play();
+        Destroy(particle.gameObject,3f);
+        yield return null;
+    }
+
+    public void GameOver(){
+        gameOver = true;
+        text.GetComponent<Animator>().SetBool("gameOver", true);
+        //retour à la scène de menu
+    }
+
+    public void AddScore(){
+        score += 1;
+        scoreText.text = "Mots trouvés: " + score;
     }
 }
