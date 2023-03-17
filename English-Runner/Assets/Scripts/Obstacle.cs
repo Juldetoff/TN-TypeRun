@@ -75,6 +75,7 @@ public class Obstacle : MonoBehaviour
         {
             isActive = false;
             player.GettingHit();
+            manager.UpdateLife();
             if(player.lives<=0){
                 manager.GameOver();
             }

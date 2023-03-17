@@ -38,9 +38,12 @@ public class Obstacle_Manager : MonoBehaviour
     public TMP_Text text = null;
     public TMP_Text scoreText = null;
 
+    public List<GameObject> Lifelist = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
         //on lance la coroutine gérant le spawn d'obstacles (parce qu'elle s'autorappelle après le cooldown)
         StartCoroutine(SpawnObs());
     }
@@ -112,5 +115,17 @@ public class Obstacle_Manager : MonoBehaviour
     public void AddScore(){
         score += 1;
         scoreText.text = "Mots trouvés: " + score;
+    }
+
+    public void UpdateLife(){
+        int life = player.GetLife();
+        for(int i=0;i<Lifelist.Count;i++){
+            if(i<life){
+                Lifelist[i].SetActive(true);
+            }
+            else{
+                Lifelist[i].SetActive(false);
+            }
+        }
     }
 }

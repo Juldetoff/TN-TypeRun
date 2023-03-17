@@ -56,6 +56,20 @@ public class WordBank : MonoBehaviour
         , "CSS", "JavaScript", "Python", "Java", "C++", "PHP", "Ruby", "Swift", "debugging", "testing"
         , "version control", "Git", "GitHub"
     };
+    private List<string> fishWords = new List<string>(){
+        "fish", "shark", "whale", "dolphin", "seal", "sea lion", "otter", "walrus", "octopus", "squid"
+        , "jellyfish", "coral", "seahorse", "starfish", "crab", "lobster", "shrimp", "clam", "oyster"
+        , "mussel", "sponge", "eel", "ray", "manta ray", "stingray", "turtle", "crocodile", "alligator"
+        , "hippopotamus", "manatee", "narwhal", "beluga", "orca", "humpback", "blue whale", "sperm whale"
+        , "killer whale", "great white shark", "hammerhead shark", "bull shark", "tiger shark", "lemon shark"
+        , "nurse shark", "mantle", "barnacle", "krill", "plankton", "algae", "seaweed", "anemone", "urchin"
+        , "cuttlefish", "nautilus", "lobed comb jelly", "box jellyfish", "tilapia"
+        , "giant clam", "abalone", "crayfish", "langoustine", "sea cucumber", "sea urchin", "horseshoe crab"
+        , "moray eel", "grouper", "barracuda", "tuna", "salmon", "trout", "carp", "catfish", "pike", "swordfish"
+        , "marlin", "anglerfish", "deep sea fish", "shoal", "reef", "tide pool", "ocean", "sea", "estuary", "saltwater"
+        , "freshwater", "aquarium", "tank", "underwater", "dive", "snorkel", "scuba", "fishing", "angling", "spearfishing"
+        , "conservation", "marine biology", "oceanography", "seafloor", "sonar"
+    };
 
     private List<string> workingWords = new List<string>();
     private List<string> hardwords = new List<string>();

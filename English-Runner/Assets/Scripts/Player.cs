@@ -116,9 +116,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GettingHealth()
+    public int GetLife()
     {
-        lives++;
+        return lives;
     }
 
     public float GetRatio(){
