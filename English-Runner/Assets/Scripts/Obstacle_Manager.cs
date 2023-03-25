@@ -87,7 +87,7 @@ public class Obstacle_Manager : MonoBehaviour
         //List<string> words = new List<string>(){"Rock", "Obstacle", "Danger", "Squid"};
         obs.SetObstacle(destroyedSpriteList[i], spriteList[i], vies, player, this, 1);
         //yield return null;
-        float bonus = Random.Range(0f, 2f);
+        float bonus = Random.Range(0.5f, 2f);
         yield return new WaitForSeconds(obsCooldown+bonus);
         StartCoroutine(SpawnObs());
     }
