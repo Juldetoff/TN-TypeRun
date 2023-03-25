@@ -58,7 +58,7 @@ public class Typer : MonoBehaviour
 
     private void CheckInput() 
     {
-        if (Input.anyKeyDown) //essaye avec anyKeyUp au lieu de Down pour corriger problème de fin de mot 
+        if (Input.anyKeyDown && isActive) //essaye avec anyKeyUp au lieu de Down pour corriger problème de fin de mot 
         {
             string keysPressed = Input.inputString;
             Debug.Log(keysPressed);

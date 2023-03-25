@@ -110,6 +110,9 @@ public class Obstacle_Manager : MonoBehaviour
     public void GameOver(){
         gameOver = true;
         text.GetComponent<Animator>().SetBool("gameOver", true);
+        foreach(Obstacle obs in obstacles){
+            obs.SetInactive();
+        }
         //retour à la scène de menu
         StartCoroutine(ReturnToMenu());
     }
